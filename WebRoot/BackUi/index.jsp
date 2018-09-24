@@ -1,0 +1,271 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<base href="<%=basePath%>">
+
+<title>My JSP 'index.jsp' starting page</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+
+
+
+
+<link rel="stylesheet" type="text/css"
+	href="EasyUI/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="EasyUI/themes/icon.css">
+<script type="text/javascript" src="EasyUI/jquery.min.js"></script>
+<script type="text/javascript" src="EasyUI/jquery.easyui.min.js"></script>
+<style type="text/css">
+	#titlediv{
+		background-image: url("BackUi/image/b.jpg");
+	}
+	
+</style>
+<script type="text/javascript">
+	$(function() {
+		$('#tree').tree({
+			url : 'data/tree.json'
+		});
+		$('#adminTree').tree({
+			url : 'data/adminTree.json'
+		});
+		$('#contTree').tree({
+			url : 'data/contTree.json'
+		});
+
+		$('#tree').tree({
+			onClick : function(node) {
+				openTabs(node);
+			}
+		});
+		$('#adminTree').tree({
+			onClick : function(node) {
+				openTabs(node);
+			}
+		});
+		$('#contTree').tree({
+			onClick : function(node) {
+				openTabs(node);
+			}
+		});
+
+	});
+	
+	$(function() {
+		$('#userTree').tree({
+			url : 'data/userTree.json'
+		});
+
+		$('#userTree').tree({
+			onClick : function(node) {
+				openTabs(node);
+			}
+		});
+
+	});
+	
+	$(function() {
+		$('#orderTree').tree({
+			url : 'data/orderTree.json'
+		});
+
+		$('#orderTree').tree({
+			onClick : function(node) {
+				openTabs(node);
+			}
+		});
+
+	});
+	
+		$(function() {
+		$('#adminTree').tree({
+			url : 'data/adminTree.json'
+		});
+
+		$('#adminTree').tree({
+			onClick : function(node) {
+				openTabs(node);
+			}
+		});
+
+	});
+
+	function openTabs(node) {
+		if ($("#tabs").tabs("exists", node.text)) {
+
+			$("#tabs").tabs("select", node.text);
+		} else {
+
+			$('#tabs').tabs('add', {
+				title : node.text,
+				href:node.attributes.url,
+				closable : true
+			});
+
+		}
+
+	}
+	
+</script>
+</head>
+
+<body class="easyui-layout">
+
+	<div id="titlediv" data-options="region:'north',title:'欢迎管理员:${userData.uname } 登录   ',split:false,collapsible:false"
+		style="height:19%;">
+		<p align="right"><a href="quit.do"  style="color: red;margin-right: 15px" ><font style="text-decoration: underline">退出</font></a></p>
+		<p align="center" ><font size="5">可可馨艺蛋糕店后台管理系统</font></p>
+		
+		</div>
+	<div data-options="region:'west',title:'菜单内容',split:true"
+		style="width:200px;">
+
+		<div id="aa" class="easyui-accordion" data-options="fit:true">
+			<div title="商品管理">
+				<ul id="tree">
+				</ul>
+				
+			</div>
+			<div title="用户管理">
+			<ul id="userTree">
+				</ul>
+			</div>
+			
+			<div title="订单管理">
+			<ul id="orderTree">
+				
+				</ul>
+				</div>
+			<div title="投诉建议管理">
+			<ul id="contTree">
+				
+				</ul>
+			</div>
+			<div title="管理员管理">
+			<ul id="adminTree">
+				</ul>
+			</div>
+		</div>
+
+
+
+	</div>
+	<div data-options="region:'center',title:'美食美客'"
+		style="padding:5px;background:#eee;">
+
+		<div id="tabs" class="easyui-tabs" data-options="fit:true" ">
+			<div title="可可馨艺" data-options="closable:true">
+			
+			<div  id="hello" style=" height:100%; background-image: url('BackUi/image/b.jpg');"></div>
+			</div>
+
+		</div>
+
+
+
+
+	</div>
+	
+</body>
+<script type="text/javascript">
+     var url;
+	function openCakeAddDialog() {
+        $("#dlg").dialog("open");
+        $("#dlg").dialog("setTitle", "添加蛋糕信息");
+        url = "saveCake.do";
+    }
+
+    function openCakeModifyDialog() {
+        var selectedRows = $("#dg").datagrid("getSelections");
+        if (selectedRows.length != 1) {
+            $.messager.alert("系统提示", "请选择一条要编辑的数据！");
+            return;
+        }
+        var row = selectedRows[0];
+        $("#dlg").dialog("open").dialog("setTitle", "编辑用户信息");
+        $("#fm").form("load", row);
+        url = "saveCake.do?cid=" + row.cid;
+    }
+    
+	 function saveCake() { 
+	
+        $("#fm").form("submit", {
+        
+            url : url,
+             
+            onSubmit : function() {
+                 
+                return $(this).form("validate");
+              
+            },
+            success : function(result) {
+ 
+                var result = eval('(' + result + ')');
+                if (result.success) {
+                    $.messager.alert("系统提示", "保存成功！");
+                    resetValue();
+                    $("#dlg").dialog("close");
+                    $("#dg").datagrid("reload");
+                } else {
+                    $.messager.alert("系统提示", "保存失败！");
+                    return;
+                }
+            }
+        });
+    }
+    
+    function resetValue() {
+        $("#cname").val("");
+        $("#cprice").val("");
+        $("#url").val("");
+        $("#infor").val("");
+        $("#ctype").val("");
+        $("#hotsell").val("");
+    }
+
+    function closeCakeDialog() {
+        $("#dlg").dialog("close");
+        resetValue();
+    }
+
+    function deleteCake() {
+        var selectedRows = $("#dg").datagrid("getSelections");
+        if (selectedRows.length == 0) {
+            $.messager.alert("系统提示", "请选择要删除的数据！");
+            return;
+        }
+        var strIds = [];
+        for ( var i = 0; i < selectedRows.length; i++) {
+            strIds.push(selectedRows[i].cid);
+        }
+        var ids = strIds.join(",");
+        $.messager.confirm("系统提示", "您确定要删除这<font color=red>"
+                + selectedRows.length + "</font>条数据吗？", function(r) {
+            if (r) {
+                $.post("deleteCake.do", {
+                    ids : ids
+                }, function(result) {
+                    if (result.success) {
+                        $.messager.alert("系统提示", "数据已成功删除！");
+                        $("#dg").datagrid("reload");
+                    } else {
+                        $.messager.alert("系统提示", "数据删除失败，请联系系统管理员！");
+                    }
+                }, "json");
+            }
+        });
+    }
+   
+</script>
+</html>

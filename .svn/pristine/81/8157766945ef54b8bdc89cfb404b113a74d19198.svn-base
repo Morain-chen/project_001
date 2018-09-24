@@ -1,0 +1,18 @@
+[
+{    
+    "id":1,    
+    "text":"订单查询",    
+    "iconCls":"icon-add",
+    "attributes":{
+     "url":"BackUi/admin.jsp"
+    }  
+},
+{    
+    "id":2,    
+    "text":"订单维护",    
+    "iconCls":"icon-edit",
+    "attributes":{
+     "url":"BackUi/admin.jsp"
+    }  
+}
+]  

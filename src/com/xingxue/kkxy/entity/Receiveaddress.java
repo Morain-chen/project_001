@@ -1,0 +1,44 @@
+package com.xingxue.kkxy.entity;
+
+public class Receiveaddress {
+	public Integer getRid() {
+		return rid;
+	}
+	public void setRid(Integer rid) {
+		this.rid = rid;
+	}
+	public Users getUid() {
+		return uid;
+	}
+	public void setUid(Users uid) {
+		this.uid = uid;
+	}
+	public String getRname() {
+		return rname;
+	}
+	public void setRname(String rname) {
+		this.rname = rname;
+	}
+	public String getRaddress() {
+		return raddress;
+	}
+	public void setRaddress(String raddress) {
+		this.raddress = raddress;
+	}
+	public String getRphone() {
+		return rphone;
+	}
+	public void setRphone(String rphone) {
+		this.rphone = rphone;
+	}
+	//编号
+	private Integer rid;
+	//用户编号
+	private Users uid;
+	//收件人
+	private String rname;
+	//收件地址
+	private String raddress;
+	//收件人号码
+	private String rphone;
+}

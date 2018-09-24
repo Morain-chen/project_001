@@ -1,0 +1,9 @@
+package com.xingxue.kkxy.service;
+
+import java.util.List;
+
+import com.xingxue.kkxy.entity.Orderr;
+
+public interface OrdersService {
+	public List<Orderr> selectOrderBystatus(int status);
+}

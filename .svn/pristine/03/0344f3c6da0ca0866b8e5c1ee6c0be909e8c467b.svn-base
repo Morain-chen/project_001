@@ -1,0 +1,42 @@
+[{    
+    "id":1,    
+    "text":"蛋糕管理",    
+    "iconCls":"icon-save",
+    "attributes":{
+     "url":"BackUi/cake.jsp"
+    }
+         
+    
+},
+{    
+    "id":2,    
+    "text":"购物管理",    
+    "iconCls":"icon-edit",
+    "attributes":{
+     "url":"hello.jsp"
+    }
+         
+    
+},
+{    
+    "id":3,    
+    "text":"模块管理",    
+    "iconCls":"icon-remove",
+    "attributes":{
+     "url":"hello.jsp"
+    }
+         
+    
+},
+{    
+    "id":4,    
+    "text":"权限管理",    
+    "iconCls":"icon-add",
+    "attributes":{
+     "url":"hello.jsp"
+    }
+         
+    
+}
+
+]  

@@ -1,0 +1,70 @@
+package com.xingxue.kkxy.service;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.xingxue.kkxy.dao.UserDao;
+import com.xingxue.kkxy.entity.Userdata;
+import com.xingxue.kkxy.entity.Users;
+
+@Service
+public class UsersServiceImpl implements UsersService {
+	@Resource
+	private UserDao ud;
+
+	public int addUser(Users user) {
+		// TODO Auto-generated method stub
+		return ud.addUser(user);
+	}
+
+	@Override
+	public List<Userdata> selectUsers(Map paraMap) {
+		// TODO Auto-generated method stub
+		System.out.println("这是用户查询的serviceImpl");
+		return ud.selectUsers(paraMap);
+	}
+
+	@Override
+	public Long selectCountUsers() {
+		// TODO Auto-generated method stub
+		return ud.selectCountAdmin();
+	}
+
+	@Override
+	public Long selectCountAdmin() {
+		// TODO Auto-generated method stub
+		return ud.selectCountAdmin();
+	}
+
+	@Override
+	public List<Userdata> selectAdmin(Map paraMap) {
+		List<Userdata> list = ud.selectAdmin(paraMap);
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).getUname());
+		}
+		return ud.selectAdmin(paraMap);
+	}
+
+	@Override
+	public int alterUser(Users user) {
+		// TODO Auto-generated method stub
+		
+		return ud.alterUser(user);
+	}
+
+	@Override
+	public Users select(Integer uid) {
+		// TODO Auto-generated method stub
+		return ud.select(uid);
+	}
+
+	public Users edit(Users users) {
+		// TODO Auto-generated method stub
+		return ud.edit(users);
+	}
+
+}

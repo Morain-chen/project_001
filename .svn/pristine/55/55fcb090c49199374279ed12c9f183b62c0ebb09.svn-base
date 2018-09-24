@@ -1,0 +1,139 @@
+ <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'login.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<script type="text/javascript">
+
+	</script>
+<style type="text/css">
+
+*{
+	padding: 0px;
+	margin: 0px;
+}
+	#main{
+	
+		padding:0px,0px;
+		margin:0px,0px;
+		float:none;
+		width:100%;
+		height:100%;
+		background-image: url("BackUi/image/a.jpg");
+		
+	}
+	#login{
+	
+		width:30%;
+		height: 35%;
+		font-family:楷体;
+		background-color: #E3D1AD;
+		 position: absolute;
+		 left:57%;
+		 top: 30%;
+		
+	}
+	input[type=submit]{
+
+ 			width: 70px;
+
+ 			height: 35px;
+			
+			border-radius:10px;
+ 			background-color: rgb(244,244,244);
+ 		}
+ 		input[type=button]{
+
+ 			width: 70px;
+
+ 			height: 35px;
+			
+			border-radius:10px;
+ 			background-color: rgb(244,244,244);
+ 		}
+ 		#title{
+ 		position:absolute;
+ 			top:10%;
+ 			left:5%;
+ 		}
+ 		#table{
+ 		position:absolute;
+ 		
+ 			top:30%;
+ 			left:5%;
+ 		}
+ 		#forget{
+ 		position:absolute;
+ 			
+ 			top:80%;
+ 			left:80%;
+ 		}
+ 		
+</style>
+  </head>
+  	
+  <body>
+   <div id="main" >
+   				<div id="login">
+   					<div>
+   						<form action="backLogin.do" method="post">
+   						<div id="title">
+   						<h4 style="color: #AE5C2D">可可心怡管理系统</h4>
+   						</div>
+   							<div id="table">
+   								<table >
+   								<tr>
+   								<td>用户昵称:</td>
+   								<td>
+   								<input type="text" style="font-family: 楷体  ; width: 172px;height: 20px" placeholder="用户昵称/手机号" name="uname" id="uname" />
+   								</td>
+   								<td></td>
+   								</tr>
+   								<tr>
+   								<td>用户密码:</td>
+   								<td>
+   								<input type="password"  style="font-family: 楷体  ; width: 172px;height: 20px" name="upassword" id="upassword"/>
+   								</td>
+   								</tr>
+   								<tr>
+   								
+   								<td>&nbsp;</td>
+   								<td></td>
+   								</tr>
+   								<tr>
+   								<td>
+   									&nbsp;   								
+   									</td>
+   								<td rowspan="2">
+
+   								<input type="submit" value="登陆"/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="Ui/userRegister.jsp"><input type="button" value="注册"/></a>
+
+   								</td>
+   							</table>
+   							</div>
+   							<div id="forget"><a href="BackUi/selectUser.jsp">忘记密码</a></div>
+   						
+   					
+   					</form>
+   					</div>
+   				
+   				</div>
+   </div>
+  </body>
+</html>

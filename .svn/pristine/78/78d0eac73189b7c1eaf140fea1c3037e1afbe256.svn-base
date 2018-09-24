@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xingxue.kkxy.dao.UserDao">
+
+<resultMap type="Userdata" id="userDataMap">
+	
+	<result property="uname" column="uname"/>
+	
+	<association property="users" javaType="Users" resultMap="usersMap"></association>
+</resultMap>
+ <resultMap type="Users" id="usersMap">
+	<id property="uid" column="uid"/>
+	<result property="name" column="name"/>
+	<result property="phone" column="phone"/>
+	
+</resultMap>
+
+<insert id="addUser" parameterType="Users">
+insert into users (name,age,sex,phone,address) values (#{name},#{age},#{sex},#{phone},#{address})
+</insert>
+
+<select id="select" parameterType="Integer" resultType="Users">
+SELECT uds.uname,u.* FROM users u INNER JOIN userdata uds ON u.`uid`=uds.uid WHERE uds.uid=#{uid}
+</select>
+<select id="selectUsers" parameterType="Page" resultMap="userDataMap">
+
+	SELECT ud.uid as uid,ud.uname as uname,u.name as name,u.phone as phone FROM users u RIGHT JOIN userdata ud ON u.uid=ud.uid WHERE ud.ustatus=0 LIMIT #{page},#{rows}
+</select>
+<select id="selectCountAdmin" resultType="long">
+	SELECT COUNT(1)  FROM users u RIGHT JOIN userdata ud ON u.uid=ud.uid where ustatus=1;
+</select>
+<select id="selectCountUsers" resultType="long">
+	SELECT COUNT(1)  FROM users u RIGHT JOIN userdata ud ON u.uid=ud.uid where ustatus=0;
+</select>
+
+<select id="selectAdmin" parameterType="Page" resultMap="userDataMap">
+	SELECT ud.uid as uid,ud.uname as uname,u.name as name,u.phone as phone FROM users u inner JOIN userdata ud ON u.uid=ud.uid WHERE ud.ustatus=1 LIMIT #{page},#{rows}
+</select>
+
+</mapper>

@@ -1,0 +1,247 @@
+
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<base href="<%=basePath%>">
+
+<title>My JSP 'hello.jsp' starting page</title>
+
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+<link rel="stylesheet" href="../EasyUI/themes/default/easyui.css" type="text/css"></link>
+<link rel="stylesheet" href="../EasyUI/themes/icon.css" type="text/css"></link>
+<script type="text/javascript" src="../EasyUI/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../EasyUI/jquery.min.js"></script>
+<script type="text/javascript" src="../EasyUI/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript">
+	 function saveCake() {
+	 var url;
+	 
+	 function openCakeAddDialog() {
+        $("#dlg").dialog("open").dialog("setTitle", "添加用蛋糕信息");
+        url = "saveCake.do";
+    }
+
+    function openCakeModifyDialog() {
+        var selectedRows = $("#dg").datagrid("getSelections");
+        if (selectedRows.length != 1) {
+            $.messager.alert("系统提示", "请选择一条要编辑的数据！");
+            return;
+        }
+        var row = selectedRows[0];
+        $("#dlg").dialog("open").dialog("setTitle", "编辑用户信息");
+        $("#fm").form("load", row);
+        url = "saveCake.do?id=" + row.id;
+    }
+    
+	 
+        $("#fm").form("submit", {
+            url : url,
+            onSubmit : function() {
+                if ($("#cname").combobox("getValue") == "") {
+                    $.messager.alert("系统提示", "请选择蛋糕名称！");
+                    return false;
+                }
+                return $(this).form("validate");
+            },
+            success : function(result) {
+                var result = eval('(' + result + ')');
+                if (result.success) {
+                    $.messager.alert("系统提示", "保存成功！");
+                    resetValue();
+                    $("#dlg").dialog("close");
+                    $("#dg").datagrid("reload");
+                } else {
+                    $.messager.alert("系统提示", "保存失败！");
+                    return;
+                }
+            }
+        });
+    }
+    
+    function resetValue() {
+        $("#cname").val("");
+        $("#cprice").val("");
+        $("#url").val("");
+        $("#infor").val("");
+        $("#ctype").val("");
+        $("#hotsell").combobox("setValue", "");
+    }
+
+    function closeCakeDialog() {
+        $("#dlg").dialog("close");
+        resetValue();
+    }
+
+    function deleteCake() {
+        var selectedRows = $("#dg").datagrid("getSelections");
+        if (selectedRows.length == 0) {
+            $.messager.alert("系统提示", "请选择要删除的数据！");
+            return;
+        }
+        var strIds = [];
+        for ( var i = 0; i < selectedRows.length; i++) {
+            strIds.push(selectedRows[i].id);
+        }
+        var ids = strIds.join(",");
+        $.messager.confirm("系统提示", "您确定要删除这<font color=red>"
+                + selectedRows.length + "</font>条数据吗？", function(r) {
+            if (r) {
+                $.post("deleteCake.do", {
+                    ids : ids
+                }, function(result) {
+                    if (result.success) {
+                        $.messager.alert("系统提示", "数据已成功删除！");
+                        $("#dg").datagrid("reload");
+                    } else {
+                        $.messager.alert("系统提示", "数据删除失败，请联系系统管理员！");
+                    }
+                }, "json");
+            }
+        });
+    }
+</script>
+</head>
+
+<body>
+	<script type="text/javascript">
+		$(function() {
+			$('#datagrid').datagrid({
+				url : 'selectCake.do',
+				title : '蛋糕信息展示',
+				singleSelect : true,
+				pagination:true,
+				 
+				columns : [ [ {
+					field : '',
+					checkbox : true
+				}, {
+					field : 'cid',
+					title : '编号',
+					width : 100,
+					align : 'center'
+				}, {
+					field : 'cname',
+					title : '名称',
+					width : 150,
+					align : 'center'
+				}, {
+					field : 'cprice',
+					title : '价格',
+					width : 100,
+					align : 'center'
+				},
+				{
+					field : 'url',
+					title : '图片',
+					width : 100,
+					align : 'center'
+				},
+				{
+					field : 'infor',
+					title : '简介',
+					width : 150,
+					align : 'center'
+				},
+				{
+					field : 'ctype',
+					title : '类型',
+					width : 100,
+					align : 'center'
+				},
+				{
+					field : 'hotsell',
+					title : '热销',
+					width : 100,
+					align : 'center'
+				}
+				
+				 ] ]
+			});
+
+		});
+
+		
+	</script>
+	
+
+	<table id="datagrid" ></table>
+	
+    <div id="tb">
+        <a href="javascript:openCakeAddDialog()" class="easyui-linkbutton"
+            iconCls="icon-add" plain="true">添加</a> <a
+            href="javascript:openCakeModifyDialog()" class="easyui-linkbutton"
+            iconCls="icon-edit" plain="true">修改</a> <a
+            href="javascript:deleteCake()" class="easyui-linkbutton"
+            iconCls="icon-remove" plain="true">删除</a>
+            
+            <div id="dlg-buttons">
+            <a href="javascript:saveCake()" class="easyui-linkbutton"
+                iconCls="icon-ok">保存</a> <a href="javascript:closeCakeDialog()"
+                class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+        </div>
+  
+    <div id="dlg" class="easyui-dialog"
+            style="width: 730px;height:280px;padding:10px 10px;" closed="true"
+            buttons="#dlg-buttons">
+            <form method="post" id="fm">
+                <table cellspacing="8px;">
+                    <tr>
+                        <td>名称：</td>
+                        <td><input type="text" id="cname" name="cname"
+                            class="easyui-validatebox" required="true" />&nbsp;<span
+                            style="color: red">*</span>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>价格：</td>
+                        <td><input type="text" id="cprice" name="cprice"
+                            class="easyui-validatebox" required="true" />&nbsp;<span
+                            style="color: red">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>图片：</td>
+                        <td><input type="text" id="url" name="url"
+                            class="easyui-validatebox" required="true" />&nbsp;<span
+                            style="color: red">*</span>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>简介：</td>
+                        <td><input type="text" id="infor" name="infor"
+                            class="easyui-validatebox" required="true" />&nbsp;<span
+                            style="color: red">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>类型：</td>
+                        <td><input type="text" id="ctype" name="ctype"
+                            class="easyui-validatebox" required="true" />&nbsp;<span
+                            style="color: red">*</span>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>热销：</td>
+                        <td><input type="text" id="hotsell" name="hotsell"
+                            class="easyui-validatebox" required="true" />&nbsp;<span
+                            style="color: red">*</span>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+       </div>
+</body>
+</html>

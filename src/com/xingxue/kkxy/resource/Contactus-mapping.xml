@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xingxue.kkxy.dao.ContactusDao">
+<select id="selectContactusByStatus" parameterType="int"  resultType="Contactus">
+SELECT *  FROM contactus WHERE custatus=#{custatus} limit #{page},#{rows}
+</select>
+<select id="selectOldContactus" parameterType="int"  resultType="Contactus">
+SELECT *  FROM contactus WHERE custatus=#{custatus} limit #{page},#{rows}
+</select>
+<select id="selectCountContactus" parameterType="int" resultType="Long">
+SELECT *  FROM contactus WHERE custatus=#{custatus}
+</select>
+<select id="selectOldCountContactus" parameterType="int" resultType="Long">
+SELECT *  FROM contactus WHERE custatus=#{custatus}
+</select>
+</mapper>

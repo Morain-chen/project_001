@@ -1,0 +1,32 @@
+package com.xingxue.kkxy.Controller;
+
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.xingxue.kkxy.entity.Userdata;
+import com.xingxue.kkxy.service.UserDataService;
+
+@Controller
+public class UserDataController {
+
+	@Autowired
+	private UserDataService uds;
+
+	
+	@RequestMapping("/register.do")
+	public 	String registerUserData(Userdata ud){
+		Userdata status=uds.registerUserData(ud);
+		if(status!=null){
+			return "Ui/index";
+		}else{
+			return "dele";
+		}
+		
+	};
+
+}

@@ -1,0 +1,69 @@
+package com.xx.entity;
+
+public class Orderdetail {
+
+	public Integer getOrid() {
+		return orid;
+	}
+	public void setOrid(Integer orid) {
+		this.orid = orid;
+	}
+	public String getOrnumber() {
+		return ornumber;
+	}
+	public void setOrnumber(String ornumber) {
+		this.ornumber = ornumber;
+	}
+	public Cake getCid() {
+		return cid;
+	}
+	public void setCid(Cake cid) {
+		this.cid = cid;
+	}
+	public String getOrname() {
+		return orname;
+	}
+	public void setOrname(String orname) {
+		this.orname = orname;
+	}
+	public String getOrurl() {
+		return orurl;
+	}
+	public void setOrurl(String orurl) {
+		this.orurl = orurl;
+	}
+	public Double getOrprice() {
+		return orprice;
+	}
+	public void setOrprice(Double orprice) {
+		this.orprice = orprice;
+	}
+	public Integer getOdnumber() {
+		return odnumber;
+	}
+	public void setOdnumber(Integer odnumber) {
+		this.odnumber = odnumber;
+	}
+	public Double getOtotal() {
+		return ototal;
+	}
+	public void setOtotal(Double ototal) {
+		this.ototal = ototal;
+	}
+	//编号
+	private Integer orid;
+	//订单编号
+	private String ornumber;
+	//商品编号
+	private Cake cid;
+	//名称
+	private String orname;
+	//图片
+	private String orurl;
+	//单价
+	private Double orprice;
+	//数量
+	private Integer odnumber;
+	//总价
+	private Double ototal;
+}

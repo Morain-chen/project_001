@@ -1,0 +1,18 @@
+[
+{    
+    "id":1,    
+    "text":"未完成订单",    
+    "iconCls":"icon-edit",
+    "attributes":{
+     "url":"BackUi/order.jsp"
+    }  
+},
+{    
+    "id":2,    
+    "text":"历史完成订单",    
+    "iconCls":"icon-edit",
+    "attributes":{
+     "url":"BackUi/oldorder.jsp"
+    }  
+}
+]  

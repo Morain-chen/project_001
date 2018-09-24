@@ -1,0 +1,45 @@
+package com.xingxue.kkxy.Controller;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.xingxue.kkxy.entity.Userdata;
+import com.xingxue.kkxy.service.UserDataService;
+
+@Controller
+
+
+@Service
+
+public class UserDataController {
+
+	@Resource
+	private UserDataService uds;
+
+	@RequestMapping("/add.ds")
+	public String addData(Userdata User) {
+		// TODO Auto-generated method stub
+
+		int statusaddda=uds.UserData(User);
+		if(statusaddda>0){
+			return "index";
+		} else {
+			return "dele";
+		}
+
+	}
+		
+
+	@RequestMapping("register")
+	public String register(String name, String password) {
+		String status = uds.register(name, password);
+		if (status != null) {
+			return "index";
+		} else {
+			return status;
+		}
+	}
+}

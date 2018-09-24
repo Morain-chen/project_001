@@ -1,0 +1,6 @@
+package com.xingxue.kkxy.dao;
+
+
+public interface UserDataDao {
+
+}

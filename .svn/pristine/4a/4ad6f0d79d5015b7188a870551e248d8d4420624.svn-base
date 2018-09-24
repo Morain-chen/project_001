@@ -1,0 +1,109 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<script src="<%=path %>/Ui/js/jquery-1.8.2.min.js"></script>
+<script>
+
+$(document).ready(function(){
+
+	  $("#bu1").click(function(){
+		  	var s = true;
+			
+			var pattern = /^[\u4e00-\u9fa5]+$/; 
+			var nicheng= pattern.test( $("#name").val()); 
+			if(nicheng==false){
+				$("#err1").text("昵称必须为汉字！");
+				s = false;
+			}		
+			
+			if($("#upassword1").val()!=$("#upassword").val()||$("#upassword1").val()==''||$("#upassword").val()==''){
+				$("#err2").text("两次密码不一致！");
+				s = false;
+			}else if(s=true){
+				$("#form1").submit();
+			}
+	  
+	  });
+
+});
+
+</script>
+
+</head>
+
+<body>
+	<jsp:include page="head.jsp"></jsp:include>
+	<div class="page_content_offset">
+		<div class="container">
+			<div class="row clearfix">
+				<section class="col-lg-9 col-md-9 col-sm-9 m_xs_bottom_30">
+				<div id="tab-2">
+					<form action="/Project_kekexinyi/add.ds" method="post" id="form1">
+						<h2 style=" font-family:'黑体'"
+							class="tt_uppercase color_dark m_bottom_25">用户注册</h2>
+						<ul>
+							<!-- <li class="m_bottom_25"><label for="name"
+								class="d_inline_b m_bottom_5 required">昵称 </label> <span
+								style="color:#FF0000;" id="err1"> <br/> <input type="text"
+									id="name" name="name" class="r_corners full_width">
+							</span></li> 
+							<li class="m_bottom_15"><label for="u_name"
+								class="d_inline_b m_bottom_5 required">用户名</label><br/> <input
+								type="text" id="u_name" name="uname"
+								class="r_corners full_width"></li>
+							<li class="m_bottom_15"><label for="u_pass1"
+								class="d_inline_b m_bottom_5 required">密码</label> <span
+								style="color:#FF0000;" id="err2"></span><br/> <input type="password"
+								id="u_pass1" name="upassword1" class="r_corners full_width"></li>
+							<li class="m_bottom_15"><label for="u_repeat_pass"
+								class="d_inline_b m_bottom_5 required">确认密码</label> <br/> <input
+								type="password" id="u_pass" name="upassword"
+								class="r_corners full_width"></li>-->
+							<!--  <li class="m_bottom_15"><label for="age"
+								class="d_inline_b m_bottom_5 required">年龄</label> <br/> <input
+								type="text" id="age" name="age" class="r_corners full_width"></li>
+
+							<li class="m_bottom_15"><label for="sex"
+								class="d_inline_b m_bottom_5 required">性别<b></b></label> <br/> <select style="width: 100%;height: 40px;background:#e4e4e2;" name="sex">
+									<option value="男">男</option>
+									<option value="女">女</option>
+							</select></li>
+
+							<li class="m_bottom_15"><label for="phone"
+								class="d_inline_b m_bottom_5 required">电话</label> <br/> <input
+								type="text" id="phone" name="phone" class="r_corners full_width"></li>
+							<li class="m_bottom_15"><label for="address"
+								class="d_inline_b m_bottom_5 required">住址</label> <br/> <input
+								type="text" id="address" name="address"
+								class="r_corners full_width"></li>-->
+						
+							<li>用户名<br/>
+							<input type="text" name="uname"><br/></li>
+							<li>密码<span id="err2"></span><br/>
+							<input type="password" name="upassword" id="upassword1"><br/></li>
+							<li>确认密码<br/>
+							<input type="password" id="upassword"><br/></li>
+						
+
+							<li><br/>
+								<input type="button" value="提交注册" id="bu1"></li>
+						</ul>
+					</form>
+				</div>
+				</section>
+
+			</div>
+		</div>
+	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
+</body>
+</html>

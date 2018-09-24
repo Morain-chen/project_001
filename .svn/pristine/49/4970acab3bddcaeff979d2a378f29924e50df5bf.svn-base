@@ -1,0 +1,61 @@
+package com.xingxue.kkxy.Controller;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.xingxue.kkxy.entity.Userdata;
+import com.xingxue.kkxy.service.BackLoginServiceImpl;
+import com.xingxue.kkxy.service.UserDataServiceImpl;
+
+@Controller
+@Service
+public class UserDataController {
+
+	@Resource
+	private UserDataServiceImpl uds;
+	private BackLoginServiceImpl bls;// 后台登录
+
+	@RequestMapping("/add.ds")
+	public String addData(Userdata User) {
+
+		int status = uds.addData(User);
+
+		if (status > 0) {
+
+			return "index";
+		} else {
+			return "dele";
+		}
+
+	}
+
+	@RequestMapping("register")
+	public String register(String name, String password) {
+		String status = uds.register(name, password);
+		if (status != null) {
+			return "index";
+		} else {
+			return status;
+		}
+	}
+
+	@RequestMapping("/backLogin.do")
+	public ModelAndView backLogin(Userdata userData) {
+		System.out.println(userData);
+		userData = bls.selectUserLogin(userData);
+		ModelAndView mv = null;
+		System.out.println(userData.getUstatus());
+		if (userData.getUstatus() == 1) {
+			mv = new ModelAndView("BackUi/index", "UserData", userData);
+		} else {
+			String status = "用户名或密码错误";
+			mv = new ModelAndView("BackUi/login", "status", status);
+		}
+		return mv;
+
+	}
+}

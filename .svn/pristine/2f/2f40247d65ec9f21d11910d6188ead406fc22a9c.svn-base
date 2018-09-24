@@ -1,0 +1,13 @@
+package com.xingxue.kkxy.dao;
+
+
+import com.xingxue.kkxy.entity.Userdata;
+
+
+public interface UserDataDao {
+
+	public int addUserData(Userdata ud);
+
+
+
+}

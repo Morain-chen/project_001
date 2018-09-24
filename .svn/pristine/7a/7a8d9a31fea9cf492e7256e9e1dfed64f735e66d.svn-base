@@ -1,0 +1,40 @@
+package com.xingxue.kkxy.Controller;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.xingxue.kkxy.entity.Userdata;
+import com.xingxue.kkxy.service.UserDataService;
+
+@Controller
+public class UserDataController {
+
+	@Resource
+	private UserDataService uds;
+
+	@RequestMapping("/add.ds")
+	public String addUserData(Userdata ud) {
+		int status = uds.addUserData(ud);
+		if (status > 0) {
+			return "Ui/index";
+		} else {
+			return "dele";
+		}
+
+	};
+
+	@RequestMapping("/register.do")
+	public String registerUserData(Userdata ud, HttpServletRequest req) {
+		Userdata userdata = uds.registerUserData(ud);
+		if (userdata != null) {
+			req.getSession().setAttribute("ud", userdata);
+			return "Ui/index";
+		} else {
+			return "dele";
+		}
+
+	};
+
+}

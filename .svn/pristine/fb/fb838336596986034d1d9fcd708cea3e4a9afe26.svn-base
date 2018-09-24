@@ -1,0 +1,10 @@
+[
+{    
+    "id":1,    
+    "text":"用户查询",    
+    "iconCls":"icon-man",
+    "attributes":{
+     "url":"BackUi/admin.jsp"
+    }  
+}
+]  

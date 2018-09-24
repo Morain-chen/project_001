@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xingxue.kkxy.dao.UserDataDao">
+<insert id="addUserData" parameterType="Userdata">
+insert into userdata(uname,upassword)values(#{uname},#{upassword})
+</insert>
+<select id="registerUserData" resultType="Userdata">
+select * from userdata where uname=#{uname} and upassword=#{upassword}
+</select>
+<select id="updateFirstSelectUser" parameterType="Userdata" resultType="Userdata">
+select * from userdata where uname=#{uname}
+</select>
+<update id="updatepassword" parameterType="Userdata">
+	update userdata set upassword=#{upassword} where uname=#{uname}
+</update>
+</mapper>

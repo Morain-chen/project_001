@@ -1,0 +1,36 @@
+package com.xingxue.kkxy.entity;
+
+public class Userdata {
+	//用户编号
+	private Integer uid;
+	public Integer getUid() {
+		return uid;
+	}
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
+	public String getUname() {
+		return uname;
+	}
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+	public String getUpassword() {
+		return upassword;
+	}
+	public void setUpassword(String upassword) {
+		this.upassword = upassword;
+	}
+	//用户名称
+	private String uname;
+	//用户密码
+	private String upassword;
+	//判断是否是管理员
+	private Integer ustatus;
+	public Integer getUstatus() {
+		return ustatus;
+	}
+	public void setUstatus(Integer ustatus) {
+		this.ustatus = ustatus;
+	}
+}

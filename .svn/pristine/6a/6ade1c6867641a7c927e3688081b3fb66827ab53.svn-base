@@ -1,0 +1,6 @@
+package com.xingxue.kkxy.service;
+
+
+public interface UsersService {
+
+}

@@ -1,0 +1,93 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<!--标记页脚-->
+	<footer id="footer">
+
+		<!--版权部分-->
+		<div class="footer_bottom_part">
+			<div class="container clearfix t_mxs_align_c">
+				<p style="font-size:10px" class="f_left f_mxs_none m_mxs_bottom_10">
+					&copy; 2016 <span style="font-size:6px" class="color_light">郑重声明</span>.本商店顾客个人信息将不会被泄漏给其他任何机构和个人.
+					- 本商店logo和图片都已经申请保护，未经授权不得使用.
+				</p>
+				<ul
+					class="f_right horizontal_list clearfix f_mxs_none d_mxs_inline_b">
+					<li><img src="<%=path %>/Ui/images/payment_img_1.png" alt=""></li>
+					<li class="m_left_5"><img
+						src="<%=path %>/Ui/images/payment_img_2.png" alt=""></li>
+					<li class="m_left_5"><img
+						src="<%=path %>/Ui/images/payment_img_3.png" alt=""></li>
+					<li class="m_left_5"><img
+						src="<%=path %>/Ui/images/payment_img_4.png" alt=""></li>
+					<li class="m_left_5"><img
+						src="<%=path %>/Ui/images/payment_img_5.png" alt=""></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+
+
+	<!--登录弹出-->
+	<div class="popup_wrap d_none" id="login_popup">
+		<section class="popup r_corners shadow">
+			<button
+				class="bg_tr color_dark tr_all_hover text_cs_hover close f_size_large">
+				<i class="fa fa-times"></i>
+			</button>
+			<h3 class="m_bottom_20 color_dark">登陆</h3>
+
+			<form action="/Project_kekexinyi/register.do" method="post">
+
+			<!--  <form action="${pageContext.request.contextPath }/register.do" method="post">-->
+
+				<ul>
+					<li class="m_bottom_15"><label for="username"
+						class="m_bottom_5 d_inline_b">用户名</label><br> <input
+						type="text" name="uname" id="username" class="r_corners full_width">
+					</li>
+					<li class="m_bottom_25"><label for="password"
+						class="m_bottom_5 d_inline_b">密码</label><br> <input
+						type="password" name="upassword" id="password" class="r_corners full_width">
+					</li>
+					<li class="m_bottom_15"><input type="checkbox" class="d_none"
+						id="checkbox_10"><label for="checkbox_10">记住账号</label></li>
+					<li class="clearfix m_bottom_30">
+						<button
+							class="button_type_4 tr_all_hover r_corners f_left bg_scheme_color color_light f_mxs_none m_mxs_bottom_15">登陆</button>
+						<div class="f_right f_size_medium f_mxs_none">
+							<a href="#" class="color_dark">忘记密码?</a>
+						</div>
+					</li>
+				</ul>
+			</form>
+			<footer class="bg_light_color_1 t_mxs_align_c">
+				<h3 class="color_dark d_inline_middle d_mxs_block m_mxs_bottom_15">新用户？</h3>
+				<a href="<%=path%>/Ui/userRegister.jsp" role="button"
+					class="tr_all_hover r_corners button_type_4 bg_dark_color bg_cs_hover color_light d_inline_middle m_mxs_left_0">申请一个新帐号</a>
+			</footer>
+		</section>
+	</div>
+
+	<!--脚本-->
+	<script src="<%=path %>/Ui/js/jquery-2.1.0.min.js"></script>
+	<script src="<%=path %>/Ui/js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="<%=path %>/Ui/js/retina.js"></script>
+	<script src="<%=path %>/Ui/js/camera.min.js"></script>
+	<script src="<%=path %>/Ui/js/jquery.easing.1.3.js"></script>
+	<script src="<%=path %>/Ui/js/waypoints.min.js"></script>
+	<script src="<%=path %>/Ui/js/jquery.isotope.min.js"></script>
+	<script src="<%=path %>/Ui/js/owl.carousel.min.js"></script>
+	<script src="<%=path %>/Ui/js/jquery.tweet.min.js"></script>
+	<script src="<%=path %>/Ui/js/jquery.custom-scrollbar.js"></script>
+	<script src="<%=path %>/Ui/js/scripts.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+package com.xingxue.kkxy.dao;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.xingxue.kkxy.entity.Userdata;
+
+public interface UserDataDao {
+
+	public int addUserData(Userdata ud);
+
+	public Userdata checkUser(int uid);// 用户查看
+
+	public Userdata registerUserData(Userdata ud);
+}

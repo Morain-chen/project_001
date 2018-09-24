@@ -1,0 +1,9 @@
+package com.xingxue.kkxy.service;
+
+import com.xingxue.kkxy.entity.Userdata;
+import com.xingxue.kkxy.entity.Users;
+
+public interface UserDataService {
+	public int UserData(Userdata User);
+
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xingxue.kkxy.dao.CakeDao">
+
+<resultMap type="Cake" id="CakeMap">
+        <result property="cid" column="cid" />
+        <result property="cname" column="cname" />
+        <result property="cprice" column="cprice" />
+        <result property="url" column="url" />
+        <result property="infor" column="infor" />
+        <result property="ctype" column="ctype" />
+        <result property="hotsell" column="hotsell" />
+    </resultMap>
+ 
+<select id="selectAllCake" parameterType="Page" resultMap="CakeMap">
+   SELECT * FROM cake c  WHERE cid LIMIT #{pageNum},#{rows};
+</select>
+<select id="selectcount" resultType="long">
+	SELECT COUNT(1)  FROM cake ;
+</select>
+
+<select id="selectCake" parameterType="Page" resultMap="CakeMap">
+	SELECT * FROM cake WHERE cid LIMIT #{page},#{rows}
+</select>
+
+ <!-- 用户删除 -->
+    <delete id="deleteCake" parameterType="Integer">
+        delete from cake where cid = #{cid}
+    </delete>
+    
+<!-- 商品添加 -->
+    <insert id="addCake" parameterType="Cake">
+        insert into Cake values(null,#{cname},#{cprice},#{url},#{infor},#{ctype},#{hotsell})
+    </insert>
+<!-- 商品修改 -->
+    <update id="updateCake" parameterType="Cake">
+        update cake
+        <set>
+            <if test="cname != null and cname != ''">cname = #{cname},</if>
+            <if test="cprice != null and cprice != ''">cprice = #{cprice},</if>
+            <if test="url != null and url != ''">url = #{url},</if>
+            <if test="infor != null and infor != ''">infor = #{infor},</if>
+            <if test="ctype != null and ctype != ''">ctype = #{ctype},</if>
+            <if test="hotsell != null and hotsell != ''">hotsell = #{hotsell},</if>
+        </set>
+        where id = #{id}
+    </update>    
+     
+
+
+</mapper>

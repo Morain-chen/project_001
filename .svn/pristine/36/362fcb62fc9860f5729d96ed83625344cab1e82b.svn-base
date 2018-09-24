@@ -1,0 +1,9 @@
+package com.xingxue.kkxy.dao;
+
+import java.util.List;
+
+import com.xingxue.kkxy.entity.Orderr;
+
+public interface OrderDao {
+	List<Orderr> selectAllOrder(int uid);
+}

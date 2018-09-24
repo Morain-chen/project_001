@@ -1,0 +1,27 @@
+package com.xingxue.kkxy.service;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.xingxue.kkxy.dao.UserDao;
+import com.xingxue.kkxy.entity.Users;
+
+@Service
+public class UsersServiceImpl implements UsersService {
+	@Resource
+	private UserDao ud;
+
+	public int addUser(Users user) {
+		// TODO Auto-generated method stub
+		return ud.addUser(user);
+	}
+
+	@Override
+	public List<Users> selectAllAdmin(int pageNum) {
+		// TODO Auto-generated method stub
+		return ud.selectAllAdmin(pageNum);
+	}
+}

@@ -1,0 +1,13 @@
+package com.xingxue.kkxy.dao;
+
+import com.xingxue.kkxy.entity.Userdata;
+import com.xingxue.kkxy.entity.Users;
+
+public interface UserDataDao {
+	public int addUserdata(Userdata data);
+	public Userdata alterBeforSelectUser(int id);// 修改前查询
+	public int alterUser(Userdata users);// 修改用户
+	public int delUser(int uid);// 删除用户
+	public Userdata checkUser(int uid);// 用户查看
+	public Userdata loginBeforSelectUser(String name, String password);// 登录前查询
+}

@@ -1,0 +1,119 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<base href="<%=basePath%>">
+
+<title>My JSP 'index.jsp' starting page</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+
+
+
+<link rel="stylesheet" href="css/main.css" type="text/css"></link>
+<link rel="stylesheet" type="text/css"
+	href="EasyUI/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="EasyUI/themes/icon.css">
+<script type="text/javascript" src="EasyUI/jquery.min.js"></script>
+<script type="text/javascript" src="EasyUI/jquery.easyui.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#tree').tree({
+			url : 'data/tree.json'
+		});
+
+		$('#tree').tree({
+			onClick : function(node) {
+				openTabs(node);
+			}
+		});
+
+	});
+
+	function openTabs(node) {
+		if ($("#tabs").tabs("exists", node.text)) {
+
+			$("#tabs").tabs("select", node.text);
+		} else {
+
+			$('#tabs').tabs('add', {
+				title : node.text,
+				href:node.attributes.url,
+				closable : true
+			});
+
+		}
+
+	}
+</script>
+</head>
+
+<body class="easyui-layout">
+	<div data-options="region:'north',title:'欢迎管理员:${sessionScope.user_login.uname } 登录',split:false,collapsible:false"
+		style="height:17%;">
+		
+		<p align="center" ><font size="5">可可馨艺蛋糕店后台管理系统</font></p>
+		
+		</div>
+	<div data-options="region:'west',title:'菜单内容',split:true"
+		style="width:200px;">
+
+		<div id="aa" class="easyui-accordion" data-options="fit:true">
+			<div title="商品管理">
+				<ul id="tree">
+				</ul>
+				
+			</div>
+			<div title="用户管理">
+			<ul id="tree">
+				</ul>
+			</div>
+			
+			<div title="订单管理">
+			<ul id="tree">
+				
+				</ul>
+				</div>
+			<div title="投诉建议管理">
+			<ul id="tree">
+				
+				</ul>
+			</div>
+			<div title="管理员管理">
+			<ul id="tree">
+				
+				</ul>
+			</div>
+		</div>
+
+
+
+	</div>
+	<div data-options="region:'center',title:'正文内容'"
+		style="padding:5px;background:#eee;">
+
+		<div id="tabs" class="easyui-tabs" data-options="fit:true">
+			<div title="可可馨艺" data-options="closable:true">
+			<p align="center"><font size="4" >美食美客,可可馨艺蛋糕店伴你身边</font></p>
+			<div id="hello"></div>
+			</div>
+
+		</div>
+
+
+
+
+	</div>
+	
+</body>
+</html>

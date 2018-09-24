@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xingxue.kkxy.dao.UserDataDao">
+
+<insert id="addUsers" parameterType="Users">
+insert into userdata(uname,upassword) values(#{uname},#{upassword})
+</insert>
+
+	<resultMap type="User" id="userMap">
+		<id property="id" column="uid" />
+		<result property="name" column="uname" />
+		<result property="password" column="upasswprd" />
+	</resultMap>
+	<insert id="addUsers" parameterType="users">
+		insert into userdata(uname,upassword) values(#{uname},#{upassword})
+	</insert>
+	<select id="register" resultMap="userMap">
+		select * from userdata where uname=#{name},upassword=#{password}
+	</select>
+
+</mapper>

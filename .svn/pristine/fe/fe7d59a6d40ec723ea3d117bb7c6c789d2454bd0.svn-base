@@ -1,0 +1,54 @@
+package com.xingxue.kkxy.Controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.xingxue.kkxy.entity.Users;
+import com.xingxue.kkxy.service.UsersService;
+
+@Controller
+public class UsersController {
+	@Resource
+	private UsersService us;
+
+	@RequestMapping("/add.do")
+	public String addUser(Users users) {
+		int status = us.addUser(users);
+		if (status > 0) {
+			return "index";
+		} else {
+			return "dele";
+		}
+
+	}
+
+	@RequestMapping("/selectAllAdmin.do")
+	public ModelAndView selectAllAdmin(HttpServletRequest req) {
+
+		ModelAndView mv = null;
+		int pageNum = 0;
+		try {
+			pageNum = Integer.parseInt(req.getParameter("pageNum"));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		int count = 0;
+		if (pageNum == 0) {
+			count = 0;
+		} else {
+			count = pageNum * 5;
+		}
+		List<Users> list = us.selectAllAdmin(count);
+
+		mv = new ModelAndView("BackUi/admin", "list", list);
+		return mv;
+	}
+}

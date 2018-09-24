@@ -1,0 +1,11 @@
+[{    
+    "id":1,    
+    "text":"蛋糕管理",    
+    "iconCls":"icon-save",
+    "attributes":{
+     "url":"BackUi/hello.jsp"
+    } 
+}
+
+
+]  

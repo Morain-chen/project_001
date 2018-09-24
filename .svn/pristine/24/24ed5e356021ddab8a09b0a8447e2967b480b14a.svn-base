@@ -1,0 +1,23 @@
+[{    
+    "id":1,    
+    "text":"蛋糕管理",    
+    "iconCls":"icon-save",
+    "attributes":{
+     "url":"BackUi/hello.jsp"
+    }
+         
+    
+},
+{    
+    "id":2,    
+    "text":"购物管理",    
+    "iconCls":"icon-edit",
+    "attributes":{
+     "url":"BackUi/cake.jsp"
+    }
+         
+    
+}
+
+
+]  

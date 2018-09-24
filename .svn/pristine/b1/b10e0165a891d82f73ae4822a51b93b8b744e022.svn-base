@@ -1,0 +1,11 @@
+package com.xingxue.kkxy.service;
+
+import java.util.List;
+
+import com.xingxue.kkxy.entity.Users;
+
+public interface UsersService {
+	public int addUser(Users user);
+	public List<Users> selectAllAdmin(int pageNum);
+
+}

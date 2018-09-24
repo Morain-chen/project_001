@@ -1,0 +1,54 @@
+package com.xx.entity;
+
+public class Users {
+	
+	public Userdata getUid() {
+		return uid;
+	}
+	public void setUid(Userdata uid) {
+		this.uid = uid;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Integer getAge() {
+		return age;
+	}
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	//用户编号
+	private Userdata uid;
+	//姓名
+	private String name;
+	//年龄
+	private Integer age;
+	//性别
+	private String sex;
+	//手机号
+	private String phone;
+	//地址
+	private String address;
+
+}

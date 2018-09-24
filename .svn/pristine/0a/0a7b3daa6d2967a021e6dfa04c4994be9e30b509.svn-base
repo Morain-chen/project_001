@@ -1,0 +1,22 @@
+package com.xingxue.kkxy.service;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.xingxue.kkxy.dao.UserDataDao;
+import com.xingxue.kkxy.entity.Userdata;
+
+
+@Service
+public class UserDataServiceImpl implements UserDataService {
+	@Resource
+	private UserDataDao udd;
+
+	public int addUserData(Userdata ud) {
+		// TODO Auto-generated method stub
+		return udd.addUserData(ud);
+	}
+
+
+}

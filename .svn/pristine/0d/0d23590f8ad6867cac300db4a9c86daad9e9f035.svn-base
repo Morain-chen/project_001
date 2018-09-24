@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xingxue.kkxy.dao.OrderDao">
+<resultMap type="Orderr" id="ordermap">
+		<id property="oid" column="oid"/>
+		<result property="onumber" column="onumber"/>
+		<result property="ortotal" column="ortotal"/>
+		<result property="ortime" column="ortime"/>
+		<result property="remark" column="remark"/>
+		<collection property="users" ofType="Users" resultMap="usersmap"></collection>
+</resultMap>
+<resultMap type="Users" id="usersmap">
+	<id property="uid" column="uid"/>
+	<result property="name" column="name"/>
+</resultMap>
+<select id="selectOrderBystatus" parameterType="int" resultMap="ordermap">
+		 SELECT o.oid AS oid,o.onumber AS onumber, u.`name` AS NAME,o.`ortotal` AS ortotal,o.`ortime` AS ortime,o.`remark` AS remark FROM orderr  o INNER JOIN users u ON o.uid=u.uid WHERE state=#{state} limit #{page},#{rows}
+</select>
+
+<select id="selectCountOrders" resultType="long">
+	SELECT COUNT(1)  FROM orderr where state=1;
+</select>
+</mapper>

@@ -1,0 +1,10 @@
+package com.xingxue.kkxy.service;
+
+import com.xingxue.kkxy.entity.Users;
+
+public interface UsersService {
+	public int addUsers(Users user);//添加
+	public Users alterBeforSelectUser(int id);// 修改前查询
+	public int alterUser(Users users);// 修改用户
+	
+}

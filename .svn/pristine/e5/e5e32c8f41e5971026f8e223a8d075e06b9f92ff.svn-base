@@ -1,0 +1,91 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<base href="<%=basePath%>">
+
+<title>My JSP 'hello.jsp' starting page</title>
+
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+
+
+</head>
+
+<body>
+	<script type="text/javascript">
+		$(function() {
+			$('#datagrid').datagrid({
+				url : 'data/show.json',
+				title : '商品信息展示',
+				singleSelect : true,
+				pagination:true,
+				columns : [ [ {
+					field : '',
+					checkbox : true
+				}, {
+					field : 'cid',
+					title : '编号',
+					width : 100,
+				}, {
+					field : 'cname',
+					title : '名称',
+					width : 100
+				}, {
+					field : 'price',
+					title : '价格',
+					width : 100,
+					align : 'right'
+				},  {
+				    field : 'info',
+					title : '介绍',
+					width : 100,
+					align : 'right'
+				},{
+			 		field : 'ctype',
+					title : '类型',
+					width : 100,
+					align : 'right'
+				},
+				,{
+			 		field : 'hotsell',
+					title : '热销',
+					width : 100,
+					align : 'right'
+				},
+				{
+					field : '             ',
+					title : '操作',
+					width : 300,
+					align : 'center',
+					formatter: function(value,row,index){
+			
+					return '<a href="">删除</a>  <a href="">修改</a> <a href="">详情</a>';
+				
+			}
+					
+				}
+				
+				 ] ]
+			});
+
+		});
+	</script>
+
+	<table id="datagrid"></table>
+	
+	</body>
+</html>

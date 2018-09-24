@@ -1,0 +1,19 @@
+package com.xingxue.kkxy.service;
+
+import java.util.List;
+import java.util.Map;
+
+import com.xingxue.kkxy.entity.Page;
+import com.xingxue.kkxy.entity.Userdata;
+import com.xingxue.kkxy.entity.Users;
+
+public interface UsersService {
+	public int addUser(Users user);
+
+	public List<Users> selectAllAdmin(Page page);
+
+	public Long selectCountAdmin();
+
+	public List<Userdata> selectAdmin(Map paraMap);
+
+}

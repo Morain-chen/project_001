@@ -1,0 +1,26 @@
+package com.xingxue.kkxy.Controller;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.xingxue.kkxy.entity.Users;
+import com.xingxue.kkxy.service.UsersService;
+
+@Controller
+public class UsersController {
+	@Resource
+	private UsersService us;
+	@RequestMapping("/add.do")
+	public String addUsers(Users user){
+		int status= us.addUsers(user);
+		if(status>0){
+			return "index";
+		}else{
+			return "dele";	
+		}
+		
+	}
+	
+}
